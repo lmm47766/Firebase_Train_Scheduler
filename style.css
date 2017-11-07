@@ -1,0 +1,30 @@
+
+.jumbotron{
+    background: gray;
+    text-align: center;
+    color: white;
+}
+
+#header{
+    font-size: 46px;
+    font-weight: normal;
+}
+
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.panel-default>.panel-heading{
+    background: darkred;
+    color: white;
+}
+
+.panel-default {
+    border-color: darkred;
+}
+
+.btn{
+    background: darkred;
+    color:white;
+}
