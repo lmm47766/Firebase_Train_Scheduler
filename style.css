@@ -1,6 +1,9 @@
+body{
+    background: #b0b5ba;
+}
 
 .jumbotron{
-    background: gray;
+    background: #0e6d72;
     text-align: center;
     color: white;
 }
@@ -27,4 +30,9 @@
 .btn{
     background: darkred;
     color:white;
+}
+
+.panel-body {
+    border-top:none;
+    padding: 15px 15px 15px 15px;
 }

@@ -15,54 +15,55 @@ firebase.initializeApp(config);
 // Create a variable to reference the database
 var database = firebase.database();
 
-var trains=[];
-var destinations=[];
-var times=[];
-var frequency=[];
-var minAway=[];
 
 // Capture Button Click
 $("#add-train").on("click", function() {
   
   event.preventDefault();
 
-
-  trains.push( $("#name-input").val().trim() );
-  destinations.push( $("#destination-input").val().trim() );
-  times.push( $("#time-input").val().trim() );
-  frequency.push( $("#frequency-input").val().trim() );
-  minAway.push();
-
-
-
-  database.ref().set({
-    name: trains,
-    destination: destinations,
-    time: times,
-    frequency: frequency
+  database.ref().push({
+    name: $("#name-input").val().trim(),
+    destination: $("#destination-input").val().trim(),
+    time: $("#time-input").val().trim(),
+    frequency: $("#frequency-input").val().trim()
     
   });
 
 });
 
-// Firebase watcher + initial loader HINT: .on("value")
-database.ref().on("value", function(snapshot) {
 
-  // Log everything that's coming out of snapshot
-  console.log(snapshot.val());
+database.ref().on("child_added", function(snapshot) {
 
-  // for (var i = 0; i < Things.length; i++) {
-  //   Things[i]
-  // }
-
-  // Change the HTML to reflect
-  $("#tName").text(snapshot.val().name );
-  $("#tDest").text(snapshot.val().destination );
-  $("#tFreq").text(snapshot.val().time );
-  $("#tNext").text(snapshot.val().frequency );
+  var freq = snapshot.val().frequency;
+  var time = snapshot.val().time;
+  var firstTrain = moment(time, 'HH:mm');
+  var nowMoment = moment();
 
 
-  // Handle the errors
+
+  if (firstTrain > nowMoment) {
+    var nextArrival=firstTrain.format("hh:mm A");;
+    var minutesAway = firstTrain.diff(nowMoment, 'minutes');
+  }
+  else{
+    var minFirst = nowMoment.diff(firstTrain, 'minutes');
+    var minLast = minFirst % freq;
+    var minutesAway = freq - minLast;
+    var nextArrival = nowMoment.add(minutesAway, 'minutes').format("hh:mm A");
+    console.log(nextArrival);
+  }
+
+
+
+  $(".table").append("<tr><td> " + snapshot.val().name +
+    " </td><td> " + snapshot.val().destination +
+    " </td><td> " + snapshot.val().frequency + 
+    " </td><td> " + nextArrival +
+    " </td><td> " + minutesAway +
+    " </td></tr>");
+
+
+
 }, function(errorObject) {
   console.log("Errors handled: " + errorObject.code);
 });

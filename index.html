@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
 		 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
 		 <link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 
@@ -16,7 +17,7 @@
 		<div class="container">
 			<div class="jumbotron">
 			  <h2 id="header">Anytime is Train Time</h2>
-			  <p>Cho Cho</p>
+			  <p>Choo Choo</p>
 			</div>			
 
 		
@@ -25,25 +26,19 @@
 				<div class="col">
 					<div class="panel panel-default">
   						<div class="panel-heading">Current Train Schedule</div>
+							<div class="panel-body">
+			  					<table class="table table-hover">
+								  <tr>
+								    <th>Train Name</th>
+					 			    <th>Destination</th> 
+								    <th>Frequency (min)</th>
+								    <th>Next Arrival</th>
+								    <th>Minutes Away</th>
+								  </tr>
 
-		  					<table class="table">
-							  <tr>
-							    <th>Train Name</th>
-							    <th>Destination</th> 
-							    <th>Frequency (min)</th>
-							    <th>Next Arrival</th>
-							    <th>Minutes Away</th>
-							  </tr>
-							  <tr>
-							    <td id="tName">Jill</td>
-							    <td id="tDest">Smith</td>
-							    <td id="tFreq">50</td>
-							    <td id="tNext">50</td>
-							    <td id="minAway">50</td>
-							  </tr>
 
-							</table>
-
+								</table>
+							</div>
 					 </div>	
 				</div>
 			</div>
@@ -56,7 +51,6 @@
 			            <h3 class="panel-title">Add Train</h3>
 			          </div>
 			          <div class="panel-body">
-
 			            <!-- Sign-up Form (note the various input "types")-->
 			            <form role="form">
 			              <div class="form-group">
@@ -72,7 +66,7 @@
 			                <input class="form-control" id="time-input" type="time">
 			              </div>
 			              <div class="form-group">
-			                <label for="comment-input">Frequency</label>
+			                <label for="comment-input">Frequency (min)</label>
 			                <input class="form-control" id="frequency-input" type="number">
 			              </div>
 			              <button class="btn btn-default" id="add-train" type="submit">Submit</button>
@@ -84,7 +78,6 @@
 			</div>
 
 		</div>
-
 	<script src="app.js"></script>
 	</body>
 </html>
